@@ -1,1 +1,2 @@
 flask_script
+flask-sqlacodegen

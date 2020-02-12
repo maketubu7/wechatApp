@@ -8,9 +8,10 @@ import sys
 from application import app,manager
 from flask_script import Server
 import traceback
+import www
 
 ## Web server
-manager.add_command("runserver", Server(host='127.0.0.1',port=8888,use_debugger=True))
+manager.add_command("runserver", Server(host='127.0.0.1',port=app.config['SERVER_PORT'],use_debugger=True))
 
 def main():
     manager.run()

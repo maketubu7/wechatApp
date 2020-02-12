@@ -4,20 +4,20 @@
 # @Email   : dengwenxingae86@163.com
 # @File    : www.py
 # @Software: PyCharm
-import sys
 
-if sys.version_info[0] == 2:
-    reload(sys)
-    sys.setdefaultencoding("utf-8")
-
-
-def func():
-    pass
+"""
+拦截器
+"""
+from web.interceptors.AuthInterceptor import *
 
 
-class Demo(object):
-    pass
+from web.controler.index import route_index
+from web.controler.User.User import route_user
+from web.controler.account.Account import route_account
+from web.controler.static import route_static
+from application import app
 
-
-if __name__ == "__main__":
-    pass
+app.register_blueprint(route_index,url_prefix='/')
+app.register_blueprint(route_user,url_prefix='/user')
+app.register_blueprint(route_static,url_prefix='/static')
+app.register_blueprint(route_account,url_prefix='/account')
