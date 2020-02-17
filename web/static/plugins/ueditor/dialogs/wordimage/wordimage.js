@@ -1,6 +1,6 @@
 /**
  * Created by JetBrains PhpStorm.
- * User: taoqili
+ * user: taoqili
  * Date: 12-1-30
  * Time: 下午12:50
  * To change this template use File | Settings | File Templates.

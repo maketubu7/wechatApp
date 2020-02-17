@@ -2,14 +2,14 @@
 # @Time    : 2020/2/11 11:44
 # @Author  : Deng Wenxing
 # @Email   : dengwenxingae86@163.com
-# @File    : User.py
+# @File    : user.py
 # @Software: PyCharm
 from flask import Blueprint,request, jsonify, make_response,redirect,g
 import json
 from common.libs.user.UserService import UserService
 from common.models.model import User
 from application import app,db
-from common.libs.UserManager import UrlManager
+from common.libs.UrlManager import UrlManager
 from common.libs.Helper import ops_render,checkpwd
 
 route_user = Blueprint('user_page',__name__)

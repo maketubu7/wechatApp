@@ -9,7 +9,6 @@ from flask_sqlalchemy import SQLAlchemy
 from flask_script import Manager
 from flask import Flask
 import os
-from common.libs.UserManager import UrlManager
 
 class Application(Flask):
     def __init__(self, import_name,template_folder=None,root_path = None):
@@ -28,5 +27,7 @@ manager = Manager(app)
 '''
 向html中注入我们的通用方法,函数模板
 '''
+from common.libs.UrlManager import UrlManager
 app.add_template_global(UrlManager.buildUrl,"buildUrl")
 app.add_template_global(UrlManager.buildStaticUrl,"buildStaticUrl")
+app.add_template_global(UrlManager.buildImgUrl,"buildImageUrl")

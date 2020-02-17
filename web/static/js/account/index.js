@@ -14,7 +14,7 @@ var account_index_ops = {
         } );
 
         $(".recover").click( function(){
-            that.ops( "recover",$(this).attr("data") );
+            that.ops( "recover",$(this).attr("data") ); //data是item.uid
         } );
     },
     ops:function( act,id ){
