@@ -160,7 +160,7 @@ pyodps==0.8.1
 pyOpenSSL==17.0.0
 pyparsing==2.2.0
 PySocks==1.6.6
-pyspark==2.3.0
+pyspark==2.3.2
 pytest==3.2.1
 pytest-arraydiff==0.2
 pytest-astropy==0.4.0
