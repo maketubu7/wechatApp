@@ -1,35 +1,28 @@
 # -*- coding: utf-8 -*-
-# @Time    : 2020/2/13 16:27
-# @Author  : Deng Wenxing
-# @Email   : dengwenxingae86@163.com
-# @File    : MemberService.py
-# @Software: PyCharm
-import hashlib, base64, string, random
-from application import app
-import requests,json
+import hashlib,requests,random,string,json
+from application import  app
+class MemberService():
 
-
-class MemberService(object):
     @staticmethod
-    def geneAuthCode(member_info=None):
+    def geneAuthCode( member_info = None ):
         m = hashlib.md5()
-        str = "%s-%s-%s" % (member_info.id, member_info.salt, member_info.status)
+        str = "%s-%s-%s" % ( member_info.id, member_info.salt,member_info.status)
         m.update(str.encode("utf-8"))
         return m.hexdigest()
 
     @staticmethod
-    def geneSalt(length=16):
-        keylist = [random.choice((string.ascii_letters + string.digits)) for i in range(length)]
-        return ("".join(keylist))
+    def geneSalt( length = 16 ):
+        keylist = [ random.choice( ( string.ascii_letters + string.digits ) ) for i in range( length ) ]
+        return ( "".join( keylist ) )
 
     @staticmethod
-    def getWeChatOpenId(code):
-        url = "https://api.weixin.qq.com/sns/jscode2session?appid={0}&secret={1}&js_code={2}&grant_type=authorization_code"
-        url = url.format(app.config['MINA_APP']['appid'], app.config['MINA_APP']['appkey'], code)
+    def getWeChatOpenId( code ):
+        url = "https://api.weixin.qq.com/sns/jscode2session?appid={0}&secret={1}&js_code={2}&grant_type=authorization_code" \
+            .format(app.config['MINA_APP']['appid'], app.config['MINA_APP']['appkey'], code)
         r = requests.get(url)
+        app.logger.info(url)
         res = json.loads(r.text)
         openid = None
         if 'openid' in res:
             openid = res['openid']
         return openid
-

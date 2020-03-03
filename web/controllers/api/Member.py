@@ -23,7 +23,7 @@ def login():
     openid = MemberService.getWeChatOpenId( code )
     if openid is None:
         resp['code'] = -1
-        resp['msg'] = "调用微信出错"
+        resp['msg'] = "调用微信出错,没有拿到openid"
         return jsonify(resp)
 
     nickname = req['nickName'] if 'nickName' in req else ''

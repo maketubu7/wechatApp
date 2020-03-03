@@ -50,6 +50,8 @@ var user_edit_ops = {
                     common_ops.alert( res.msg,callback );
                 }
             });
+
+
         });
     }
 };

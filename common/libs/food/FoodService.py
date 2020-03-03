@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 from application import app,db
-from common.models.model import FoodStockChangeLog
-from common.models.model import Food
+from common.models.food.FoodStockChangeLog import FoodStockChangeLog
+from common.models.food.Food import Food
 from common.libs.Helper import getCurrentDate
 class FoodService():
 

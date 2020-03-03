@@ -1,10 +1,6 @@
 # -*- coding: utf-8 -*-
-# @Time    : 2020/2/10 22:52
-# @Author  : Deng Wenxing
-# @Email   : dengwenxingae86@163.com
-# @File    : local_setting.py
-# @Software: PyCharm
 DEBUG = True
-SQLALCHEMY_ECHO = False
-SERVER_PORT = 8888
-AUTH_COOKIE_NAME = 'make-love'
+SQLALCHEMY_ECHO = True
+SQLALCHEMY_DATABASE_URI = 'mysql://root:123456@127.0.0.1/wechatapp?charset=utf8mb4'
+SQLALCHEMY_TRACK_MODIFICATIONS = False
+SQLALCHEMY_ENCODING = "utf8mb4"

@@ -130,3 +130,6 @@ def logout():
     response = make_response(redirect(UrlManager.buildUrl("/user/login")))
     response.delete_cookie(app.config['AUTH_COOKIE_NAME'])
     return response
+
+if __name__ == '__main__':
+    print("ww")

@@ -1,6 +1,6 @@
 /**
  * Created with JetBrains PhpStorm.
- * user: xuheng
+ * User: xuheng
  * Date: 12-9-26
  * Time: 下午12:29
  * To change this template use File | Settings | File Templates.

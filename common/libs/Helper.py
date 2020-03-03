@@ -1,61 +1,6 @@
 # -*- coding: utf-8 -*-
-# @Time    : 2020/2/11 23:22
-# @Author  : Deng Wenxing
-# @Email   : dengwenxingae86@163.com
-# @File    : Helper.py
-# @Software: PyCharm
-from flask import g, render_template
-import re,datetime
-
-'''
-密码强度验证
-'''
-def lenOK(pwd):
-    if (len(pwd) >= 8):
-        return True
-    else:
-        print("WARNING: The password should be at least 8 characters.")
-        return False
-
-def numberOK(pwd):
-    pattern = re.compile('[0-9]+')
-    match = pattern.findall(pwd)
-    if match:
-        return True
-    else:
-        print("WARNING: The password should include at least 1 number.")
-        return False
-
-def upperOK(pwd):
-    pattern = re.compile('[A-Z]+')
-    match = pattern.findall(pwd)
-    if match:
-        return True
-    else:
-        print("WARNING: The password should include at least 1 upper character.")
-        return False
-
-def lowerOK(pwd):
-    pattern = re.compile('[a-z]+')
-    match = pattern.findall(pwd)
-    if match:
-        return True
-    else:
-        print("WARNING: The password should include at least 1 lower character.")
-        return False
-
-def symbolOK(pwd):
-    pattern = re.compile('^[a-z0-9A-Z]+')
-    match = pattern.findall(pwd)
-    if match:
-        return True
-    else:
-        print("WARNING: The password should start with numbers or characters.")
-        return False
-
-def checkpwd(pwd):
-    return lenOK(pwd) and numberOK(pwd) and upperOK(pwd) and lowerOK(pwd) and symbolOK(pwd)
-
+from flask import g,render_template
+import datetime
 '''
 自定义分页类
 '''
@@ -78,7 +23,6 @@ def iPagination( params ):
     page_size = int( params['page_size'] )
     page = int( params['page'] )
     display = int( params['display'] )
-
     total_pages = int( math.ceil( total / page_size ) )
     total_pages = total_pages if total_pages > 0 else 1
     if page <= 1:
@@ -105,39 +49,78 @@ def iPagination( params ):
     ret['total'] = total
     ret['range'] = range( ret['from'],ret['end'] + 1 )
     return ret
+
 '''
 统一渲染方法
 '''
-
-def ops_render(template, context = {}):
+def ops_render( template,context = {} ):
     if 'current_user' in g:
         context['current_user'] = g.current_user
-    return render_template(template,**context)
+    return render_template( template,**context )
 
 '''
 获取当前时间
 '''
-def getCurrentDate(format = '%Y-%m-%d %H:%M:%S'):
-    return datetime.datetime.now().strftime(format)
+def getCurrentDate( format = "%Y-%m-%d %H:%M:%S"):
+    #return datetime.datetime.now().strftime( format )
+    return datetime.datetime.now()
+
+'''
+获取格式化的时间
+'''
+def getFormatDate( date = None ,format = "%Y-%m-%d %H:%M:%S" ):
+    if date is None:
+        date = datetime.datetime.now()
+
+    return date.strftime( format )
 
 
-"""
-根据某个字段获取一个dict
-"""
-
-def getDictFilterField(db_model,select_filed, key_field,id_list):
+'''
+根据某个字段获取一个dic出来
+'''
+def getDictFilterField( db_model,select_filed,key_field,id_list ):
     ret = {}
     query = db_model.query
-    if id_list and len(id_list) > 0:
-        query = query.filter_by(select_filed.in_(id_list))
+    if id_list and len( id_list ) > 0:
+        query = query.filter( select_filed.in_( id_list ) )
 
     list = query.all()
     if not list:
         return ret
     for item in list:
-        if not hasattr(item, key_field):
+        if not hasattr( item,key_field ):
             break
 
-        ret[getattr(item, key_field)] = item
+        ret[ getattr( item,key_field ) ] = item
+    return ret
 
+
+
+def selectFilterObj( obj,field ):
+    ret = []
+    for item in obj:
+        if not hasattr(item, field ):
+            break
+        if getattr( item,field )  in ret:
+            continue
+        ret.append( getattr( item,field ) )
+    return ret
+
+
+def getDictListFilterField( db_model,select_filed,key_field,id_list ):
+    ret = {}
+    query = db_model.query
+    if id_list and len( id_list ) > 0:
+        query = query.filter( select_filed.in_( id_list ) )
+
+    list = query.all()
+    if not list:
+        return ret
+    for item in list:
+        if not hasattr( item,key_field ):
+            break
+        if getattr( item,key_field ) not in ret:
+            ret[getattr(item, key_field)] = []
+
+        ret[ getattr( item,key_field ) ].append(item )
     return ret

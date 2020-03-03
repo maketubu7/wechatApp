@@ -9,8 +9,8 @@
                             <h5>营收概况</h5>
                         </div>
                         <div class="ibox-content">
-                            <h1 class="no-margins">{{ 300 }}</h1>
-                            <small>近30日：{{ 100 }}</small>
+                            <h1 class="no-margins">{{ data.finance.today }}</h1>
+                            <small>近30日：{{ data.finance.month }}</small>
                         </div>
                     </div>
                 </div>
@@ -21,8 +21,8 @@
                             <h5>订单</h5>
                         </div>
                         <div class="ibox-content">
-                            <h1 class="no-margins">{{ 400 }}</h1>
-                            <small>近30日：{{ 160 }}</small>
+                            <h1 class="no-margins">{{ data.order.today }}</h1>
+                            <small>近30日：{{ data.order.today }}</small>
                         </div>
                     </div>
                 </div>
@@ -33,9 +33,9 @@
                             <h5>会员</h5>
                         </div>
                         <div class="ibox-content">
-                            <h1 class="no-margins">{{ 1900 }}</h1>
-                            <small>今日新增：{{ 34 }}</small>
-                            <small>近30日新增：{{ 45 }}</small>
+                            <h1 class="no-margins">{{ data.member.total }}</h1>
+                            <small>今日新增：{{ data.member.today_new }}</small>
+                            <small>近30日新增：{{ data.member.month_new }}</small>
                         </div>
                     </div>
                 </div>
@@ -46,8 +46,8 @@
                             <h5>分享</h5>
                         </div>
                         <div class="ibox-content">
-                            <h1 class="no-margins">{{ 54 }}</h1>
-                            <small>近30日：{{ 234 }}</small>
+                            <h1 class="no-margins">{{ data.shared.today }}</h1>
+                            <small>近30日：{{ data.shared.month }}</small>
                         </div>
                     </div>
                 </div>
