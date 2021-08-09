@@ -171,7 +171,7 @@ python-dateutil==2.6.1
 python-docx==0.8.10
 pytz==2017.2
 PyWavelets==1.0.0
-pywin32==220
+pywin32==301
 pywinpty==0.5.7
 PyYAML==3.12
 pyzmq==18.0.1
